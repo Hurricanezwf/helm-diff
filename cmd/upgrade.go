@@ -68,6 +68,7 @@ type diffCmd struct {
 	extraAPIs                []string
 	kubeVersion              string
 	useUpgradeDryRun         bool
+	force                    bool // NOTE: ZWF ADD IT.
 	diff.Options
 
 	// dryRunMode can take the following values:
@@ -257,6 +258,8 @@ func newChartCommand() *cobra.Command {
 	f.StringArrayVar(&diff.postRendererArgs, "post-renderer-args", []string{}, "an argument to the post-renderer (can specify multiple)")
 	f.BoolVar(&diff.insecureSkipTLSVerify, "insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	f.BoolVar(&diff.normalizeManifests, "normalize-manifests", false, "normalize manifests before running diff to exclude style differences from the output")
+	// NOTE: ZWF ADD IT;
+	f.BoolVar(&diff.force, "force", false, "force resource updates through a replacement strategy")
 
 	AddDiffOptions(f, &diff.Options)
 

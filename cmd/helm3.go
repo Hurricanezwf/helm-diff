@@ -104,6 +104,10 @@ func getChart(release, namespace string) (string, error) {
 
 func (d *diffCmd) template(isUpgrade bool) ([]byte, error) {
 	flags := []string{}
+	if d.force {
+		// NOTE: ZWF ADD IT;
+		flags = append(flags, "--force")
+	}
 	if d.devel {
 		flags = append(flags, "--devel")
 	}
